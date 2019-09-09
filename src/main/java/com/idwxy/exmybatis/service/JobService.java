@@ -18,7 +18,7 @@ public interface JobService {
      * @param id
      * @return
      */
-    int deleceJob(Integer id);
+    int deleteJob(Integer id);
 
     /**
      * 更新 job
@@ -38,5 +38,5 @@ public interface JobService {
      * 查找所有 job
      * @return
      */
-    List<Job> seleceAllJob();
+    List<Job> selectAllJob();
 }
