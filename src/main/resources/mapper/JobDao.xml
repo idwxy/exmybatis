@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.idwxy.exmybatis.dao.JobDao">
+    <resultMap id="JobInfo" type="com.idwxy.exmybatis.entity.Job">
+        <id column="id" property="id" />
+        <result column="name" property="jobName" />
+        <result column="description" property="jobDescription" />
+        <collection property="users" column="id"
+                    ofType="com.idwxy.exmybatis.entity.UserEntity"
+                    select="com.idwxy.exmybatis.dao.UserDao.selectByJobId" />
+    </resultMap>
+
+    <select id="selectById" parameterType="Integer" resultMap="JobInfo">
+        select id, name, description
+        from job where id = #{id};
+    </select>
+
+    <select id="selectBriefById" parameterType="Integer"
+            resultType="com.idwxy.exmybatis.entity.Job">
+        select id, name, description
+        from job where id = #{id};
+    </select>
+
+    <select id="selectAll" resultMap="JobInfo">
+        select id, name, description from job
+    </select>
+
+    <insert id="insert" parameterType="com.idwxy.exmybatis.entity.Job"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into job(name, description)
+        values(#{jobName}, #{jobDescription});
+    </insert>
+
+    <update id="update" parameterType="com.idwxy.exmybatis.entity.Job">
+        update job
+        <set>
+            <if test="name != null and name != ''">
+                name = #{jobName},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{jobDescription},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        delete from job where id = #{id};
+    </delete>
+</mapper>
