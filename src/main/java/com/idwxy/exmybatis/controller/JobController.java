@@ -48,7 +48,7 @@ public class JobController {
     }
 
     // 查询 job
-    @GetMapping("/find/{id]")
+    @GetMapping("/find/{id}")
     public ResultObject find(@PathVariable Integer id) {
         Job job = jobService.selectJobById(id);
         Map<String, Job> map = new HashMap<>();
