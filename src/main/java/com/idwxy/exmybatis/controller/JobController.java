@@ -38,7 +38,7 @@ public class JobController {
     }
 
     // 更新 job
-    @PostMapping("/modify")
+    @PutMapping("/modify")
     public ResultObject modify(@RequestBody Job job) {
         int result = jobService.updateJob(job);
         Map<String, Integer> map = new HashMap<>();
@@ -58,7 +58,7 @@ public class JobController {
     }
 
     // 查询所有 job
-    @GetMapping("/finaAll")
+    @GetMapping("/findAll")
     public ResultObject findAll() {
         List<Job> jobs = jobService.selectAllJob();
         Map<String, List<Job>> map = new HashMap<>();
