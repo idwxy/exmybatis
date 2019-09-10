@@ -27,7 +27,7 @@
 
     <select id="selectByJobId" parameterType="Integer"
             resultType="com.idwxy.exmybatis.entity.UserEntity">
-        select id, name from user where job_id = #{job_id}
+        select id, name from user where job_id = #{job.id}
     </select>
 
     <select id="selectAll" resultMap="UserInfo">
@@ -37,7 +37,7 @@
     <insert id="insert" parameterType="com.idwxy.exmybatis.entity.UserEntity"
             useGeneratedKeys="true" keyProperty="id">
         insert into user (name, gender, age, job_id, card_id)
-        values (#{name}, #{gender,}, #{age}, #{job_id}, #{card_id})
+        values (#{name}, #{gender,}, #{age}, #{job.id}, #{card.id})
     </insert>
 
     <update id="update" parameterType="com.idwxy.exmybatis.entity.UserEntity">
@@ -53,10 +53,10 @@
                 age = #{age},
             </if>
             <if test="job != null">
-                job_id = #{job_id},
+                job_id = #{job.id},
             </if>
             <if test="card != null">
-                card_id = #{card_id},
+                card_id = #{card.id},
             </if>
         </set>
         where id = #{id}

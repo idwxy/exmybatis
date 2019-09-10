@@ -7,7 +7,7 @@
         select h.* from
         user_hobby ub
         join hobby h
-        on ub.hooby_id = h.id
+        on ub.hobby_id = h.id
         where ub.user_id = #{id}
     </select>
 </mapper>
